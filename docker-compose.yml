@@ -1,0 +1,21 @@
+﻿version: "3.8"
+
+services:
+  db:
+    container_name: pm_database
+    image: postgres:14-alpine
+    networks:
+      - pm_net
+    volumes:
+      - pm_db:/var/lib/postgresql
+  app:
+    networks:
+      - pm_net
+
+networks:
+  - pm_net:
+      driver: bridge
+      
+volumes:
+  - pm_db:
+      driver: local
